@@ -6,9 +6,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrza1127/09-readme-generator.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrza1127/09-readme-generator/issues"
+  },
+  "homepage": "https://github.com/mrza1127/09-readme-generator#readme",
   "dependencies": {
-    "inquirer": "^6.3.1"
-  }
+    "inquirer": "^8.2.4"
+  },
+  "devDependencies": {}
 }
