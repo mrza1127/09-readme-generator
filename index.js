@@ -1,6 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
+const fs = require('fs')
 
 // TODO: Create an array of questions for user input
 const questions = [];
@@ -25,11 +26,24 @@ const promptUser = () => {
             type: 'input',
             name: 'title',
             message: 'What is the title name of your project? (Use + for spaces)',
-            validate: projectInput => {
-                if (projectInput) {
+            validate: titleInput => {
+                if (titleInput) {
                     return true
                 } else {
                     console.log("You must enter a project title name!")
+                    return false
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'description',
+            message: 'Describe your project',
+            validate: descriptionInput => {
+                if (descriptionInput) {
+                    return true
+                } else {
+                    console.log("You must enter a project description!")
                     return false
                 }
             }
@@ -49,10 +63,10 @@ const promptUser = () => {
         },
         {
             type: 'input',
-            name: 'github',
+            name: 'link',
             message: 'What is the link to the github repository?',
-            validate: githubInput => {
-                if (githubInput) {
+            validate: linkInput => {
+                if (linkInput) {
                     return true
                 } else {
                     console.log("You must link your github repository!")
@@ -62,10 +76,10 @@ const promptUser = () => {
         },
         {
             type: 'input',
-            name: 'githubUsername',
+            name: 'username',
             message: 'What is your GitHub username?',
-            validate: projectInput => {
-                if (projectInput) {
+            validate: usernameInput => {
+                if (usernameInput) {
                     return true
                 } else {
                     console.log("You must enter your GitHub username!")
@@ -74,54 +88,70 @@ const promptUser = () => {
             }
         },
         {
-            type: 'confirm',
-            name: 'confirmInstall',
-            message: 'Would you like to add installation instructions?',
-            default: true
-        },
-        {
             type: 'input',
             name: 'install',
             message: 'Provide installation instructions',
-            when:  ({ confirmInstall }) => confirmInstall
-        },
-        {
-            type: 'confirm',
-            name: 'confirmTest',
-            message: 'Would you like to include a test section?',
-            default: true
         },
         {
             type: 'input',
             nane: 'test',
             message: 'Provide details about testing for this app',
-            when: ({ confirmTest }) => confirmTest
-        },
-        {
-            type: 'confirm',
-            name: 'confirmUsage',
-            message: 'Would you like to enter usage instructions?',
-            default: true
         },
         {
             type: 'input',
             name: 'usage',
             message: 'Provide instructions for usage',
-            when: ({ confirmUsage }) => confirmUsage
         },
         {
             type: 'input',
             name: 'license',
-            message: 'Which license is this application covered under?'
+            message: 'Which license is this application covered under?',
+        },
+        {
+            type: 'input',
+            name: 'contributing',
+            message: 'Provide instructions for contributing to this project',
+        },
+        {
+            type: 'input',
+            name: 'contributors',
+            message: 'Provide a username for any additional contributors to this project'
         }
     ])
 }
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    return new Promise((resolve, reject) => {
+        fs.writeFile(fileName, data, err => {
+            // if error, reject promise and .catch the error
+            if (err) {
+                reject(err)
+                return
+            }
+            // resolve if no error
+            resolve({
+                ok: true,
+                message: 'file created'
+            })
+        })
+    })
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    askQuestions()
+    .then(readmeData => {
+        console.log(readmeData)
+        return generateMarkdown(readmeData)
+    })
+    .then(readmeMarkdown => {
+        return writeToFile('./dist/readme.md', readmeMarkdown)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+}
 
 // Function call to initialize app
 init();
