@@ -19,34 +19,36 @@ const renderLicenseBadge = license => {
   }
 }
 
-// table of contents here
-generateTOC = () => {
-  return `
-  Table of Contents will go here
-  `
-}
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// returning a link to the license. if there is no license, return an empty string 
 const renderLicenseLink = license => {
-  if (!license) {
+  if (license == 'MIT') {
+    return `[${license}](https://opensource.org/licenses/MIT)
+    `
+  } else if (license === 'ISC') {
+    return `[${license}](https://opensource.org/licenses/ISC)
+    `
+  } else if (license === 'Apache 2.0') {
+    return `[${license}](https://opensource.org/Apache-2.0)
+    `
+  } else if (license === 'BSD 3-Clause') {
+    return `[${license}](https://opensource.org/licenses/BSD-3-Clause)
+    `
+  } else if (license === 'GPL 3.0') {
+    return `[${license}](https://www.gnu.org/licenses/gpl-3.0)
+    `
+  } else {
     return ''
   }
-
-  return `
-  [${license}](https://www.google.com)
-  `
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// returning licensing section
+// if theres no license, return empty string
 const renderLicenseSection = license => {
   if (!license) {
     return ''
   }
 
-  return `
-  This is covered by the ${renderLicenseLink(license)} license.
+  return ` This is covered by the ${renderLicenseLink(license)} license.
   `
 }
 
@@ -59,6 +61,8 @@ const generateMarkdown = data => {
 
   ${data.description}
 
+  #### [${data.title}](${data.link})
+
   ## Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)
@@ -66,8 +70,6 @@ const generateMarkdown = data => {
   * [Tests](#tests)
   * [Questions](#questions)
   * [License](#license)
-
-  ${generateTOC()}
 
   ## Installation
   ${data.install}
@@ -86,7 +88,7 @@ const generateMarkdown = data => {
 
   ## Questions
 
-  Contact ${data.name} at ${data.email} for any problems 
+  Contact [${data.name}](https://github.com/${data.username}) at [${data.email}](mailto:${data.email}) for any problems 
 
   $$ License
   ${renderLicenseSection(data.license)}

@@ -1,6 +1,6 @@
 # Portfolio
- [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)]
- (https://www.gnu.org/licenses/gpl-3.0)
+ [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)]
+ (https://opensource.org/licenses/BSD-3-Clause)
 
 ## Description
 
@@ -35,10 +35,11 @@ Table of Contents will go here
 
 ## Questions
 
-Contact / at / for any problems
+If any questions, reach out to [I](https://github.com/mrza1127) at 
+[isaiasmoraza@gmail.com](mailto:isaiasmoraza@gmail.com)
 
 ## License
 
 This project is covered by the 
-[GPL 3.0](https://www.google.com)
+[BSD 3-Clause](https://opensource.org/licenses/BSD-3-Clause)
 license

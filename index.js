@@ -3,8 +3,6 @@ const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 const fs = require('fs')
 
-// TODO: Create an array of questions for user input
-const questions = [];
 
 // using inquirer to prompt user to answer a set of questions
 const promptUser = () => {
@@ -18,6 +16,32 @@ const promptUser = () => {
                     return true
                 } else {
                     console.log("You must enter your name!")
+                    return false
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'username',
+            message: 'What is your GitHub username?',
+            validate: usernameInput => {
+                if (usernameInput) {
+                    return true
+                } else {
+                    console.log("You must enter your GitHub username!")
+                    return false
+                }
+            }
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'What is your email address?',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true
+                } else {
+                    console.log("You must enter an email address!")
                     return false
                 }
             }
@@ -50,19 +74,6 @@ const promptUser = () => {
         },
         {
             type: 'input',
-            name: 'email',
-            message: 'What is your email address?',
-            validate: emailInput => {
-                if (emailInput) {
-                    return true
-                } else {
-                    console.log("You must enter an email address!")
-                    return false
-                }
-            }
-        },
-        {
-            type: 'input',
             name: 'link',
             message: 'What is the link to the github repository?',
             validate: linkInput => {
@@ -76,26 +87,13 @@ const promptUser = () => {
         },
         {
             type: 'input',
-            name: 'username',
-            message: 'What is your GitHub username?',
-            validate: usernameInput => {
-                if (usernameInput) {
-                    return true
-                } else {
-                    console.log("You must enter your GitHub username!")
-                    return false
-                }
-            }
-        },
-        {
-            type: 'input',
             name: 'install',
-            message: 'Provide installation instructions',
+            message: 'Provide instructions for anyone to start your application',
         },
         {
             type: 'input',
             nane: 'test',
-            message: 'Provide details about testing for this app',
+            message: 'Provide testing instructions for this app',
         },
         {
             type: 'input',
@@ -103,16 +101,16 @@ const promptUser = () => {
             message: 'Provide instructions for usage',
         },
         {
+            type: 'input',
+            name: 'contributing',
+            message: 'Provide guidelines for contributing to this project:'
+        },
+        {
             type: 'list',
             name: 'license',
             message: 'Which license is this application covered under?',
             choices: ['MIT', 'Apache 2.0', 'GPL 3.0', 'BSD 3-Clause', 'ISC', 'None']
         },
-        {
-            type: 'input',
-            name: 'contributing',
-            message: 'Provide instructions for contributing to this project',
-        }
     ])
 }
 
@@ -142,7 +140,7 @@ function init() {
         return generateMarkdown(readmeData)
     })
     .then(readmeMarkdown => {
-        return writeToFile('./dist/readme.md', readmeMarkdown)
+        return writeToFile('./dist/README.md', readmeMarkdown)
     })
     .catch(err => {
         console.log(err)
