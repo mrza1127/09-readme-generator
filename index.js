@@ -88,7 +88,7 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'install',
-            message: 'Provide instructions for anyone to start your application',
+            message: 'Does your app require any dependencies? If so, list them here:',
         },
         {
             type: 'input',
@@ -101,15 +101,15 @@ const promptUser = () => {
             message: 'Provide instructions for usage',
         },
         {
-            type: 'input',
-            name: 'contributing',
-            message: 'Provide guidelines for contributing to this project:'
-        },
-        {
             type: 'list',
             name: 'license',
             message: 'Which license is this application covered under?',
             choices: ['MIT', 'Apache 2.0', 'GPL 3.0', 'BSD 3-Clause', 'ISC', 'None']
+        },
+        {
+            type: 'input',
+            name: 'contributing',
+            message: 'Provide guidelines for contributing to this project:'
         },
     ])
 }

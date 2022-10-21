@@ -10,27 +10,29 @@ This application helps you build a professional Readme for your own application.
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
+* [License](#license)
 * [Contributing](#contributing)
 * [Tests](#tests)
 * [Questions](#questions)
-* [License](#license)
 
 ## Installation
-You must use Node.js to run this app in the command line. Clone this repository and then run 'node index' within the same directory as the index.js
+You must install NodeJS 8.2 to run this app. Next, run 'node index' within the same directory as the index.js
 
 ## Usage 
 /
 
+## License
+
+This project is covered by the [MIT](https://opensource.org/licenses/MIT) license.
+
 ## Contributing
 
+/
+
+## Tests
 /
 
 ## Questions
 
 If any questions, reach out to [I](https://github.com/mrza1127) at 
 [isaiasmoraza@gmail.com](mailto:isaiasmoraza@gmail.com)
-
-## License
-
-This project is covered by the [MIT](https://opensource.org/licenses/MIT)
-license.

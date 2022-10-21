@@ -44,12 +44,24 @@ const renderLicenseLink = license => {
 // returning licensing section
 // if theres no license, return empty string
 const renderLicenseSection = license => {
-  if (!license) {
+  if (license === "None") {
     return ''
   }
 
-  return ` This is covered by the ${renderLicenseLink(license)} license.
+  return `
+  ## License
+  
+  This is covered by the ${renderLicenseLink(license)} license.
   `
+}
+
+//generating link to table of contents for license section, if there is a license
+const renderLicenseTOCLink = license => {
+  if (license === 'None') {
+    return ''
+  }
+
+  return `* [License](#license)`
 }
 
 // generating the markdown for readme file
@@ -66,16 +78,19 @@ const generateMarkdown = data => {
   ## Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)
+  ${renderLicenseTOCLink(data.license)}
   * [Contributing](#contributing)
   * [Tests](#tests)
   * [Questions](#questions)
-  * [License](#license)
+  * 
 
   ## Installation
   ${data.install}
 
   ## Usage 
   ${data.usage}
+
+  ${renderLicenseSection(data.license)}
 
   ## Contributing
 
@@ -90,8 +105,6 @@ const generateMarkdown = data => {
 
   Contact [${data.name}](https://github.com/${data.username}) at [${data.email}](mailto:${data.email}) for any problems 
 
-  $$ License
-  ${renderLicenseSection(data.license)}
 `;
 }
 
