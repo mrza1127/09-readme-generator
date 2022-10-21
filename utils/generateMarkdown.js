@@ -2,12 +2,19 @@
 // If there is no license, return an empty string
 const fs = require('fs');
 const renderLicenseBadge = license => {
-  if (!license) {
+  if (!license == 'MIT') {
+    return `MIT`
+  } else if (license === 'ISC') {
+    return `ISC`
+  } else if (license === 'Apache 2.0') {
+    return `Apache 2.0`
+  } else if (license === 'GPL 3.0') {
+    return `GPL 3.0`
+  } else if (license === 'ISC') {
+    return `ISC`
+  } else {
     return ''
   }
-
-  return `
-  ${license} Badge Placeholder` 
 }
 
 // table of contents here
@@ -41,22 +48,7 @@ const renderLicenseSection = license => {
   `
 }
 
-// Questions:
-// name
-// title
-// email
-// github repo link
-// github username 
-// description
-
-// usage
-// test
-// instructions for installation
-// contributors
-// license
-
-
-// TODO: Create a function to generate markdown for README
+// generating the markdown for readme file
 const generateMarkdown = data => {
   return `# ${data.title}
   ${renderLicenseBadge(data.license)}
@@ -66,6 +58,12 @@ const generateMarkdown = data => {
   ${data.description}
 
   ## Table of Contents
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [Questions](#questions)
+  * [License](#license)
 
   ${generateTOC()}
 
@@ -75,22 +73,21 @@ const generateMarkdown = data => {
   ## Usage 
   ${data.usage}
 
-  ${renderLicenseSection(data.license)}
-
   ## Contributing
 
   ${data.contributing}
 
-  Contributions were made by ${data.username} and ${data.contributors}
 
   ## Tests
 
   ${data.test}
 
-  ## Contact
-  
-  If you have any further questions, contact ${data.name} at ${data.email}
+  ## Questions
 
+  Contact ${data.name} at ${data.email} for any problems 
+
+  $$ License
+  ${renderLicenseSection(data.license)}
 `;
 }
 

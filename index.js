@@ -103,19 +103,15 @@ const promptUser = () => {
             message: 'Provide instructions for usage',
         },
         {
-            type: 'input',
+            type: 'list',
             name: 'license',
             message: 'Which license is this application covered under?',
+            choices: ['MIT', 'Apache 2.0', 'GPL 3.0', 'BSD', 'ISC', 'None']
         },
         {
             type: 'input',
             name: 'contributing',
             message: 'Provide instructions for contributing to this project',
-        },
-        {
-            type: 'input',
-            name: 'contributors',
-            message: 'Provide a username for any additional contributors to this project'
         }
     ])
 }
